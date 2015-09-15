@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width"/>
 
-<title>Tuenti ;)</title>
+<title>Tuenti ;) - Tucuman</title>
 
 <style>
 
@@ -34,6 +34,7 @@ html{
 }
 
 #form-div {
+	/*background-color:rgba(255, 255, 255, 0.11); */
 	padding-left:35px;
 	padding-right:35px;
 	padding-top:35px;
@@ -131,24 +132,6 @@ input:focus, textarea:focus {
   	font-weight:700;
 }
 
-#button-blue2-init{
-	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-	float:left;
-	width: 100%;
-	border: #31648A solid 4px;
-	cursor:pointer;
-	background-color: #3498db;
-	color:white;
-	font-size:24px;
-	padding-top:22px;
-	padding-bottom:22px;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-  	margin-top:-4px;
-  	font-weight:700;
-}
-
 .customDesc {
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	font-weight:500;
@@ -162,7 +145,7 @@ input:focus, textarea:focus {
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	font-weight:500;
 	font-size: 20px;
-	margin-bottom: 6px;
+		margin-bottom: 6px;
 	color:#313131;
 
 }
@@ -227,6 +210,27 @@ input:focus, textarea:focus {
 }
   
   </style>
+
+
+  <script>
+	  function doChange(element) {
+	  	if (element.id == 'compania') {
+	  		var compa = element.value;
+	  		if (element.value == "Otro") {
+	  			compa = prompt("Ingrese nombre de la compañía", "");
+	  			document.getElementById("compania_value").style.display = "inline";
+	  		} else {
+	  			document.getElementById("compania_value").style.display = "none";
+	  		}
+	  		document.getElementById("compania_value").value = compa;
+	  	} else {
+	  		document.getElementById(element.id + "_value").value = element.value;
+	  	}
+	  }
+  </script>
+
+  <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+
 </head>
 
 <body>
@@ -237,16 +241,103 @@ input:focus, textarea:focus {
 <div id="form-main">
   
   <div id="form-div">
-   
-   <br/>
-   
-  <a href="tucuman.html" class="customDesc" style="font-size:40px;text-decoration:none; background-color: #3A729B;padding: 4px 5px 6px 5px;border: 4px solid #000;color: white;">TUCUMAN</a>
-  <a href="neuquen.html" class="customDesc" style="font-size:40px;text-decoration:none; background-color: #3A729B;padding: 4px 5px 6px 5px;border: 4px solid #000;color: white;margin-left:4px;">NEUQUEN</a>
+    <form class="form" id="form1">
+     
 
-   
+	<p class="customDesc">EMAIL</p>
+    <input name="email_value" type="text" class="feedback-input" id="email_value" placeholder="Email" />
+
+
+  	<p class="customDesc">NOMBRE Y APELLIDO</p>
+	<input name="nombre_value" type="text" class="feedback-input" placeholder="Nombre y Apellido" id="nombre_value" />
+
+  	<p class="customDesc">EDAD</p>
+    <input name="edad_value" type="number" class="feedback-input" placeholder="Edad" id="edad_value" />
+
+	<p class="customDescDrop">QUE COMPANIA TENES? </p>
+	 <select class="feedback-input" id="compania" onchange="doChange(this);">
+	  <option value="Movistar">Movistar</option>
+	  <option value="Personal">Personal</option>
+	  <option value="Claro">Claro</option>
+	  <option value="Nextel">Nextel</option>
+	  <option value="Otro">Otro</option>
+	</select>
+	<input type="text"  id="compania_value" class="feedback-input" style="display:none;" value="Movistar"/>
+
+	<p class="customDescDrop">CONOCIAS TUENTI? </p>
+	 <select class="feedback-input" id="yaconocia" onchange="doChange(this);">
+	  <option value="SI">SI</option>
+	  <option value="NO">NO</option>
+	</select>
+	<input type="text" id="yaconocia_value" style="display:none" value="SI"/>
+
+	<p class="customDescDrop">TU CELU ESTA LIBERADO? </p>
+	 <select class="feedback-input" id="celuliberado" onchange="doChange(this);">
+	  <option value="SI">SI</option>
+	  <option value="NO">NO</option>
+	</select>
+	<input type="text" id="celuliberado_value" style="display:none" value="SI"/>
+
+
+	 <p style="float:left;"><a href="https://www.tuenti.com.ar/terminos-y-condiciones/" style="text-decoration:none" target="_blank">TERMINOS Y CONDICIONES</a> </p>
+      
+      <div class="submit">
+        <input type="button" value="ENVIAR" id="button-blue" onclick="sendData();" />
+        <div class="ease"></div>
+      </div>
+    </form>
+  </div>
+
+  <div style="display:none;" id="final">
+  		<br/><br/>
+		<p class="customDescDrop">GRACIAS POR COMPLETAR LA ENCUESTA!</p>
+		<div class="submit">
+        	<input type="button" value="CONTINUAR" id="button-blue2" onclick="location.href=location.href;" />
+        	<div class="ease"></div>
+      </div>
   </div>
 
   </div>
 
+  <script>
+    var firebaseConn = new Firebase("https://tuentidev1.firebaseio.com");
+
+    // Tucuman
+    var dataRef = firebaseConn.child("tucuman");
+
+    function sendData(obj) {
+    	var email = document.getElementById("email_value").value;
+    	var nombre = document.getElementById("nombre_value").value;
+    	var edad = document.getElementById("edad_value").value;
+    	var compania = document.getElementById("compania_value").value;
+    	var yaconocia = document.getElementById("yaconocia_value").value;
+    	var celuliberado = document.getElementById("celuliberado_value").value;
+
+    	if (email != '' && nombre != '' && edad != '' && compania != '' && yaconocia != '' && celuliberado != '') {
+    		var objToSave = {
+    			email: email,
+    			nombre_apellido: nombre,
+    			edad: edad,
+    			compania: compania,
+    			ya_conocia_tuenti: yaconocia,
+    			celular_liberado: celuliberado
+    		};
+
+    		saveData(objToSave);
+
+    		document.getElementById("form-div").style.display = "none";
+    		document.getElementById("button-blue").style.display = "none";
+	  		document.getElementById("final").style.display = "inline";
+
+    	} else {
+    		alert("Por favor completar todos los campos");
+    	}
+    }
+
+    function saveData(objSave) {
+		var newElement = dataRef.push();
+		newElement.set(objSave);
+    }
+  </script>
   </body>
 </html>
