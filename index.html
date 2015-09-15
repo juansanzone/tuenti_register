@@ -1,3 +1,6 @@
+<html>
+<head>
+
 <link rel="shortcut icon" type="image/x-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/favicon_tuenti.ico" />
 <meta name="keywords" content="tuenti, chip, celular, hablar, chatear, internet, app, móvil, equipo" />
 <meta name="language" content="es" />
@@ -10,15 +13,14 @@
 <meta property="og:image" content="https://d2px9hljt8lyuz.cloudfront.net/ar/media/img/FCsomostuenti.png " />
 <link rel="apple-touch-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/ico-download-app.png">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width"/>
 
- <meta name="viewport" content="width=device-width"/>
- 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Gotham_Book);
 
 html{   
-    background: linear-gradient(45deg, #0085ca, #7EB0D4, #E2E2E2);
-    height: 115%;
+    background-color: #f4f4f4;
+    background-repeat: repeat;
 }
 
 #feedback-page{
@@ -31,7 +33,7 @@ html{
 }
 
 #form-div {
-	background-color:rgba(255, 255, 255, 0.11);
+	/*background-color:rgba(255, 255, 255, 0.11); */
 	padding-left:35px;
 	padding-right:35px;
 	padding-top:35px;
@@ -63,6 +65,7 @@ html{
 	box-sizing: border-box;
   	border: 3px solid rgba(0,0,0,0);
   	height: 53px;
+  	border: 3px solid rgba(103, 103, 103, 0.29);
 }
 
 .feedback-input:focus{
@@ -96,7 +99,7 @@ input:focus, textarea:focus {
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	float:left;
 	width: 100%;
-	border: #fbfbfb solid 4px;
+	border: #31648A solid 4px;
 	cursor:pointer;
 	background-color: #3498db;
 	color:white;
@@ -106,8 +109,8 @@ input:focus, textarea:focus {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
-  margin-top:-4px;
-  font-weight:700;
+  	margin-top:-4px;
+  	font-weight:700;
 }
 
 .customDesc {
@@ -174,6 +177,28 @@ input:focus, textarea:focus {
   
   </style>
 
+
+  <script>
+
+  function doChange(element) {
+  	if (element.id == 'compania') {
+  		var compa = element.value;
+  		if (element.value == "Otro") {
+  			compa = prompt("Ingrese nombre de la compañía", "");
+  			document.getElementById("compania_value").style.display = "inline";
+  		} else {
+  			document.getElementById("compania_value").style.display = "none";
+  		}
+  		document.getElementById("compania_value").value = compa;
+  	} else {
+  		document.getElementById(element.id + "_value").value = element.value;
+  	}
+  }
+  </script>
+
+</head>
+
+<body>
 <div style="position:fixed;background-color:black;height:60px;width:100%;margin-top:-10px;z-index:99;margin-left:-8px;opacity:0.8">
 	<img src="logo.png" width=200vh />    
 </div>
@@ -185,39 +210,41 @@ input:focus, textarea:focus {
      
 
 	<p class="customDesc">EMAIL</p>
-        <input name="email" type="text" class="feedback-input" id="email" placeholder="Email" />
+    <input name="email_value" type="text" class="feedback-input" id="email" placeholder="Email" />
 
 
-      	<p class="customDesc">NOMBRE Y APELLIDO</p>
+  	<p class="customDesc">NOMBRE Y APELLIDO</p>
+	<input name="nombre_value" type="text" class="feedback-input" placeholder="Nombre y Apellido" id="nombre" />
 
-        <input name="nombre" type="text" class="feedback-input" placeholder="Nombre y Apellido" id="name" />
-
-      	<p class="customDesc">EDAD</p>
-        <input name="edad" type="number" class="feedback-input" placeholder="Edad" id="edad" />
-
-
+  	<p class="customDesc">EDAD</p>
+    <input name="edad_value" type="number" class="feedback-input" placeholder="Edad" id="edad" />
 
 	<p class="customDescDrop">QUE COMPANIA TENES? </p>
-	 <select class="feedback-input">
+	 <select class="feedback-input" id="compania" onchange="doChange(this);">
 	  <option value="Movistar">Movistar</option>
 	  <option value="Personal">Personal</option>
 	  <option value="Claro">Claro</option>
 	  <option value="Nextel">Nextel</option>
-	   <option value="Otro">Otro</option>
+	  <option value="Otro">Otro</option>
 	</select>
+	<input type="text"  id="compania_value" class="feedback-input" style="display:none;"/>
 
 	<p class="customDescDrop">CONOCIAS TUENTI? </p>
-	 <select class="feedback-input">
+	 <select class="feedback-input" id="yaconocia" onchange="doChange(this);">
 	  <option value="SI">SI</option>
 	  <option value="NO">NO</option>
 	</select>
+	<input type="text" id="yaconocia_value" style="display:none" value="SI"/>
 
 	<p class="customDescDrop">TU CELU ESTA LIBERADO? </p>
-	 <select class="feedback-input">
+	 <select class="feedback-input" id="celuliberado" onchange="doChange(this);">
 	  <option value="SI">SI</option>
 	  <option value="NO">NO</option>
 	</select>
-      
+	<input type="text" id="celuliberado_value" style="display:none" value="SI"/>
+
+
+	 <p style="float:right;"><a href="https://www.tuenti.com.ar/terminos-y-condiciones/" style="text-decoration:none" target="_blank">TERMINOS Y CONDICIONES</a> </p>
       
       <div class="submit">
         <input type="submit" value="ENVIAR" id="button-blue"/>
@@ -225,3 +252,8 @@ input:focus, textarea:focus {
       </div>
     </form>
   </div>
+
+  </div>
+
+  </body>
+</html>
