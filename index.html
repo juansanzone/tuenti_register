@@ -1,0 +1,225 @@
+<link rel="shortcut icon" type="image/x-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/favicon_tuenti.ico" />
+<meta name="keywords" content="tuenti, chip, celular, hablar, chatear, internet, app, móvil, equipo" />
+<meta name="language" content="es" />
+<meta name="robots" content="index, follow" />
+<meta property="og:url" content="https://www.tuenti.com.ar/" >
+<meta property="og:title" content="Tuenti. Hacelo móvil" >
+<meta name="description" property="og:description" content="&quot;Tuenti es lo último en telefonía móvil. Con combos pensados para que puedas navegar, chatear y hablar sin atarte a facturas ni contratos.&quot;
+" >
+<meta property="og:site_name" content="https://www.tuenti.com.ar" >
+<meta property="og:image" content="https://d2px9hljt8lyuz.cloudfront.net/ar/media/img/FCsomostuenti.png " />
+<link rel="apple-touch-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/ico-download-app.png">
+<meta charset="UTF-8">
+
+<style>
+@import url(http://fonts.googleapis.com/css?family=Gotham_Book);
+
+html{   
+    background: linear-gradient(45deg, #0085ca, #7EB0D4, #E2E2E2);
+    height: 115%;
+}
+
+#feedback-page{
+	text-align:center;
+}
+
+#form-main{
+	width:100%;
+	float:left;
+}
+
+#form-div {
+	background-color:rgba(255, 255, 255, 0.11);
+	padding-left:35px;
+	padding-right:35px;
+	padding-top:35px;
+	padding-bottom:50px;
+	width: 450px;
+	float: left;
+	left: 50%;
+	position: absolute;
+  	margin-top:30px;
+	margin-left: -260px;
+  	-moz-border-radius: 7px;
+  	-webkit-border-radius: 7px;
+}
+
+.feedback-input {
+	color:#3c3c3c;
+	font-family: Helvetica, Arial, sans-serif;
+  	font-weight:500;
+	font-size: 18px;
+	border-radius: 0;
+	line-height: 22px;
+	background-color: #fbfbfb;
+	padding: 13px 13px 13px 10px;
+	margin-bottom: 10px;
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+  	border: 3px solid rgba(0,0,0,0);
+  	height: 53px;
+}
+
+.feedback-input:focus{
+	background: #fff;
+	box-shadow: 0;
+	border: 3px solid #3498db;
+	color: #3498db;
+	outline: none;
+  	padding: 13px 13px 13px 10px;
+}
+
+.focused{
+	color:#30aed6;
+	border:#30aed6 solid 3px;
+}
+
+
+textarea {
+    width: 100%;
+    height: 150px;
+    line-height: 150%;
+    resize:vertical;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+	background-color:white;
+}
+
+#button-blue{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width: 100%;
+	border: #fbfbfb solid 4px;
+	cursor:pointer;
+	background-color: #3498db;
+	color:white;
+	font-size:24px;
+	padding-top:22px;
+	padding-bottom:22px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+
+.customDesc {
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-weight:500;
+	font-size: 20px;
+	margin-bottom: 6px;
+	color:#313131;
+
+}
+
+.customDescDrop {
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-weight:500;
+	font-size: 20px;
+		margin-bottom: 6px;
+	color:#313131;
+
+}
+
+
+#button-blue:hover{
+	background-color: rgba(0,0,0,0);
+	color: #0493bd;
+}
+	
+.submit:hover {
+	color: #3498db;
+}
+	
+.ease {
+	width: 0px;
+	height: 74px;
+	background-color: #fbfbfb;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.submit:hover .ease{
+  width:100%;
+  background-color:white;
+}
+
+.submit{
+	 position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+@media only screen and (max-width: 580px) {
+	#form-div{
+		left: 3%;
+		margin-right: 3%;
+		width: 88%;
+		margin-left: 0;
+		padding-left: 3%;
+		padding-right: 3%;
+	}
+}
+  
+  </style>
+
+<div style="position:fixed;background-color:black;height:60px;width:100%;margin-top:-10px;z-index:99;margin-left:-8px;opacity:0.8">
+	<img src="logo.png" width=200vh />    
+</div>
+
+<div id="form-main">
+  
+  <div id="form-div">
+    <form class="form" id="form1">
+     
+
+	<p class="customDesc">EMAIL</p>
+        <input name="email" type="text" class="feedback-input" id="email" placeholder="Email" />
+
+
+      	<p class="customDesc">NOMBRE Y APELLIDO</p>
+
+        <input name="nombre" type="text" class="feedback-input" placeholder="Nombre y Apellido" id="name" />
+
+      	<p class="customDesc">EDAD</p>
+        <input name="edad" type="number" class="feedback-input" placeholder="Edad" id="edad" />
+
+
+
+	<p class="customDescDrop">QUE COMPANIA TENES? </p>
+	 <select class="feedback-input">
+	  <option value="Movistar">Movistar</option>
+	  <option value="Personal">Personal</option>
+	  <option value="Claro">Claro</option>
+	  <option value="Nextel">Nextel</option>
+	   <option value="Otro">Otro</option>
+	</select>
+
+	<p class="customDescDrop">CONOCIAS TUENTI? </p>
+	 <select class="feedback-input">
+	  <option value="SI">SI</option>
+	  <option value="NO">NO</option>
+	</select>
+
+	<p class="customDescDrop">TU CELU ESTA LIBERADO? </p>
+	 <select class="feedback-input">
+	  <option value="SI">SI</option>
+	  <option value="NO">NO</option>
+	</select>
+      
+      
+      <div class="submit">
+        <input type="submit" value="ENVIAR" id="button-blue"/>
+        <div class="ease"></div>
+      </div>
+    </form>
+  </div>
