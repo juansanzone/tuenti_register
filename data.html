@@ -1,0 +1,417 @@
+<html>
+<head>
+
+<link rel="shortcut icon" type="image/x-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/favicon_tuenti.ico" />
+<meta name="keywords" content="tuenti, chip, celular, hablar, chatear, internet, app, móvil, equipo" />
+<meta name="language" content="es" />
+<meta name="robots" content="index, follow" />
+<meta property="og:url" content="https://www.tuenti.com.ar/" >
+<meta property="og:title" content="Tuenti. Hacelo móvil" >
+<meta name="description" property="og:description" content="&quot;Tuenti es lo último en telefonía móvil. Con combos pensados para que puedas navegar, chatear y hablar sin atarte a facturas ni contratos.&quot;
+" >
+<meta property="og:site_name" content="https://www.tuenti.com.ar" >
+<meta property="og:image" content="https://d2px9hljt8lyuz.cloudfront.net/ar/media/img/FCsomostuenti.png " />
+<link rel="apple-touch-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/ico-download-app.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width"/>
+
+<title>Tuenti ;) - Neuquen</title>
+
+<style>
+
+html{   
+    background-color: #f4f4f4;
+    background-repeat: repeat;
+}
+
+#feedback-page{
+	text-align:center;
+}
+
+#form-main{
+	width:100%;
+	float:left;
+}
+
+#form-div {
+	/*background-color:rgba(255, 255, 255, 0.11); */
+	padding-left:35px;
+	padding-right:35px;
+	padding-top:35px;
+	padding-bottom:50px;
+	width: 450px;
+	float: left;
+	left: 50%;
+	position: absolute;
+  	margin-top:30px;
+	margin-left: -260px;
+  	-moz-border-radius: 7px;
+  	-webkit-border-radius: 7px;
+}
+
+.feedback-input {
+	color:#3c3c3c;
+	font-family: Helvetica, Arial, sans-serif;
+  	font-weight:500;
+	font-size: 18px;
+	border-radius: 0;
+	line-height: 22px;
+	background-color: #fbfbfb;
+	padding: 13px 13px 13px 10px;
+	margin-bottom: 10px;
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+  	border: 3px solid rgba(0,0,0,0);
+  	height: 53px;
+  	border: 3px solid rgba(103, 103, 103, 0.29);
+}
+
+.feedback-input:focus{
+	background: #fff;
+	box-shadow: 0;
+	border: 3px solid #3498db;
+	color: #3498db;
+	outline: none;
+  	padding: 13px 13px 13px 10px;
+}
+
+.focused{
+	color:#30aed6;
+	border:#30aed6 solid 3px;
+}
+
+
+textarea {
+    width: 100%;
+    height: 150px;
+    line-height: 150%;
+    resize:vertical;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+	background-color:white;
+}
+
+#button-blue{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width: 100%;
+	border: #31648A solid 4px;
+	cursor:pointer;
+	background-color: #3498db;
+	color:white;
+	font-size:24px;
+	padding-top:22px;
+	padding-bottom:22px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  	margin-top:-4px;
+  	font-weight:700;
+}
+
+#button-blue2{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width: 100%;
+	border: #31648A solid 4px;
+	cursor:pointer;
+	background-color: #3498db;
+	color:white;
+	font-size:24px;
+	padding-top:22px;
+	padding-bottom:22px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  	margin-top:-4px;
+  	font-weight:700;
+}
+
+.customDesc {
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-weight:500;
+	font-size: 20px;
+	margin-bottom: 6px;
+	color:#313131;
+
+}
+
+.customDescDrop {
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-weight:500;
+	font-size: 20px;
+		margin-bottom: 6px;
+	color:#313131;
+
+}
+
+
+#button-blue:hover{
+	background-color: rgba(0,0,0,0);
+	color: #0493bd;
+}
+	
+.submit:hover {
+	color: #3498db;
+}
+	
+.ease {
+	width: 0px;
+	height: 74px;
+	background-color: #fbfbfb;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.submit:hover .ease{
+  width:100%;
+  background-color:white;
+}
+
+.submit{
+	position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+#final {
+	padding-left:35px;
+	padding-right:35px;
+	padding-top:35px;
+	padding-bottom:50px;
+	width: 450px;
+	float: left;
+	left: 50%;
+	position: absolute;
+  	margin-top:30px;
+	margin-left: -260px;
+  	-moz-border-radius: 7px;
+  	-webkit-border-radius: 7px;
+}
+
+@media only screen and (max-width: 580px) {
+	#form-div{
+		left: 3%;
+		margin-right: 3%;
+		width: 88%;
+		margin-left: 0;
+		padding-left: 3%;
+		padding-right: 3%;
+	}
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  max-width: 600px;
+  height: 320px;
+  border-collapse: collapse;
+  border: 1px solid #38678f;
+  margin: 50px auto;
+  background: white;
+}
+th {
+  background: #3A729B;
+  height: 54px;
+  width: 25%;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 #38678f;
+  color: white;
+  border: 1px solid #38678f;
+  box-shadow: inset 0px 1px 2px #568ebd;
+  transition: all 0.2s;
+}
+tr {
+  border-bottom: 1px solid #cccccc;
+}
+tr:last-child {
+  border-bottom: 0px;
+}
+td {
+  border-right: 1px solid #cccccc;
+  padding: 10px;
+  transition: all 0.2s;
+}
+td:last-child {
+  border-right: 0px;
+}
+td.selected {
+  background: #d7e4ef;
+  z-index: ;
+}
+td input {
+  font-size: 14px;
+  background: none;
+  outline: none;
+  border: 0;
+  display: table-cell;
+  height: 100%;
+  width: 100%;
+}
+td input:focus {
+  box-shadow: 0 1px 0 steelblue;
+  color: steelblue;
+}
+::-moz-selection {
+  background: steelblue;
+  color: white;
+}
+::selection {
+  background: steelblue;
+  color: white;
+}
+.heavyTable {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: float 5s infinite;
+}
+.main {
+  max-width: 600px;
+  padding: 10px;
+  margin: auto;
+}
+.content {
+  color: white;
+  text-align: center;
+}
+.content p,
+.content pre,
+.content h2 {
+  text-align: left;
+}
+.content pre {
+  padding: 1.2em 0 0.5em;
+  background: white;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #38678f;
+}
+.content .download {
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  padding: 1em 1em;
+  border-radius: 12em;
+  margin-bottom: 2em;
+}
+.content .button {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  border-radius: 24px;
+  border: 1px solid #38678f;
+  background: steelblue;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+  transition: all 0.1s;
+}
+.content .button:hover {
+  background: #4f8aba;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+.content .button:active {
+  color: #294d6b;
+  background: #427aa9;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.content .button:focus {
+  outline: none;
+}
+h1 {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+  
+  </style>
+
+  <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+
+</head>
+
+<body>
+<div style="position:fixed;background-color:black;height:60px;width:100%;margin-top:-10px;z-index:99;margin-left:-8px;opacity:0.8">
+	<img src="logo.png" width=200vh />    
+</div>
+
+<div id="form-main">
+  
+  <div id="form-div">
+   
+   	<div id="loading">
+  		<img src="loader.gif" style="margin-left: 20vh;"/>
+   		<p class="customDescDrop" style="margin-left: 13vh;">CARGANDO DATA </p>
+	</div>
+
+  
+  </div>
+
+
+<br/>
+	 <div id="data1" style="display:none;">
+	</div>
+
+
+	<div id="data2" style="display:none;">
+	</div>
+
+
+
+  </div>
+
+
+
+
+  <script>
+    var firebaseConn = new Firebase("https://tuenti-dev.firebaseio.com");
+
+	firebaseConn.on("value", function(snapshot) {
+	  processData(snapshot.val());
+	  document.getElementById("loading").style.display = "none";
+	}, function (errorObject) {
+	  alert("Error leyendo data. Intente nuevamente");
+	});
+
+	function processData(dataValue) 
+	{
+		var tucuman = dataValue.tucuman;
+		var neuquen = dataValue.neuquen;
+
+		var tableHead = "<table style='width:100%' class='heavyTable'><thead><tr><th>Ciudad</th><th>Nombre y Apellido</th><th>Email</th><th>Edad</th><th>Compañía</th><th>Conocía Tuenti?</th><th>Celu Liberado?</th></tr></thead><tbody>";
+		var tableFoot = "</tbody></table>";
+
+		var contentTable = '';
+		Object.keys(tucuman).forEach(function(key) {
+		  contentTable = contentTable + '<tr><td>Tucuman</td><td>' + tucuman[key].nombre_apellido + '</td><td>'+ tucuman[key].email +'</td><td>'+ tucuman[key].edad +'</td><td>'+ tucuman[key].compania +'</td><td>'+ tucuman[key].ya_conocia_tuenti +'</td><td>'+ tucuman[key].celular_liberado +'</td></tr>';
+		});
+
+		document.getElementById("data1").innerHTML = tableHead + contentTable + tableFoot;
+
+		var contentTable = '';
+		Object.keys(neuquen).forEach(function(key) {
+		  contentTable = contentTable + '<tr><td>Neuquen</td><td>' + neuquen[key].nombre_apellido + '</td><td>'+ neuquen[key].email +'</td><td>'+ neuquen[key].edad +'</td><td>'+ neuquen[key].compania +'</td><td>'+ neuquen[key].ya_conocia_tuenti +'</td><td>'+ neuquen[key].celular_liberado +'</td></tr>';
+		});
+
+		document.getElementById("data2").innerHTML = tableHead + contentTable + tableFoot;
+
+		document.getElementById("data1").style.display = "inline";
+		document.getElementById("data2").style.display = "inline";
+	}
+  </script>
+  </body>
+</html>
