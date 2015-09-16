@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width"/>
 
-<title>Tuenti ;) - Neuquen</title>
+<title>Tuenti ;) - Datos</title>
 
 <style>
 
@@ -378,11 +378,32 @@ h1 {
 
 
   <script>
+
+
+    Notification.requestPermission();
+
+
+
+	var once = 1;
     var firebaseConn = new Firebase("https://tuenti-dev.firebaseio.com");
 
 	firebaseConn.on("value", function(snapshot) {
 	  processData(snapshot.val());
 	  document.getElementById("loading").style.display = "none";
+
+	  if (once > 1) {
+		if (!Notification) {
+		    console.log('Desktop notifications not available in your browser'); 
+		    return;
+		  } else {
+		  	var notification = new Notification('Nuevo Usuario Registrado ;)', {
+		      icon: 'https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/tuenti/tuenti_logo.png',
+		      body: "Revisar la tabla para mas detalles ;)",
+		    });
+		  }
+	  } else {
+	  	once++;
+	  }
 	}, function (errorObject) {
 	  alert("Error leyendo data. Intente nuevamente");
 	});
