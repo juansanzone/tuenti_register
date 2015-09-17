@@ -1,0 +1,72 @@
+<html style="margin: 0;padding: 0;">
+<head style="margin: 0;padding: 0;">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=false;" style="margin: 0;padding: 0;">
+<style>
+	body {margin: 0;padding: 0;text-align: center;}
+	.btn {border: none;padding: 6px 12px;border-bottom: 0 solid;width:100%;height: 50px;font-size:24px;}
+	#header {margin: 0;padding: 10px 0;width: 100%;}
+	#logo_container{text-align: left;margin-left:5px;}
+	#content{margin: 0;padding: 10px 20px 20px 20px;}
+	#title {margin: 0 0 5px 0;padding: 0;font: 300 Georgia, serif;line-height: 140%;font-size:25px;}
+	#text {margin: 0 0 20px 0;padding: 0;}
+	#loading_text {margin: 0 0 5px 0;padding: 0;font: 300 Georgia, serif;line-height: 140%;font-size:25px;display:none;}
+	#loading_image {display:none;}
+</style>
+
+<script>
+	function closeLanding() {
+  		UAirship.close();
+	}
+
+	function reactivateAd() {
+		document.getElementById("title").style.display = "none";
+		document.getElementById("photo").style.display = "none";
+		document.getElementById("text").style.display = "none";
+		document.getElementById("content").style.display = "none";
+		//document.getElementById("loading_text").style.display = "inline";
+		//document.getElementById("loading_image").style.display = "inline";
+		location.href = "http://olx.in/myaccount/deactivateactivate?item_id=879760799&alog=7ee7:AKg_AW4377MzwyTpiom4uw~~";
+	}
+</script>
+
+</head>
+<body style="background-color:white">
+
+	<div id="header" style="background-color: #0A508E;">
+		<div id="logo_container">
+	 		<img id="logo" src="http://static01.olx-st.com/mobile-webapp/images/desktop/logo.png" width="40px">
+		</div>
+	</div>
+
+	<p id="title" style="color: #353535;">
+		Are you sure you want  <br/>
+		to reactivate your ad?
+	</p>
+	
+	<!--
+	<p id="loading_text" style="color: #353535;">
+	<br/>
+	<img id="loading_image" src ="http://juansanzone.github.io/tuenti_register/load.gif"/>
+	<br/>
+	Reactivating your Ad
+	</p>
+	-->
+	
+	<img id="photo" class="icon" src="http://img03.olx.in/images_olxin/118333947_1_1000x700_maruti-suzuki-astar-2012-look-like-a-new-car-chennai.jpg" style="width:100%;">
+
+
+	<p id="text" style="color:white;background-color:black;font-size:25px;width:100%;position:fixed;opacity:0.5;margin-top: -29px;max-height:36px;">
+		Maruti Suzuki Astar 2012
+	</p> 
+
+	<div id="content">
+		<button id="sell" type="button" class="btn" style="background-color: #9BAB09;color:white;margin-bottom:8px;" onclick="reactivateAd();">
+			Yes, reactivate ad
+		</button>
+
+		<button id="nosell" type="button" class="btn" style="background-color: #919192;color:white;" onclick="closeLanding();">
+			No, sell more
+		</button>
+	</div>
+</body>
+</html>
