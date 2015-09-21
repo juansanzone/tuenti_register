@@ -379,7 +379,7 @@ h1 {
 
   <script>
 
-    Notification.requestPermission();
+    //Notification.requestPermission();
 
     var firebaseConn = new Firebase("https://tuenti-dev.firebaseio.com");
 
@@ -387,10 +387,10 @@ h1 {
 	  processData(snapshot.val());
 	  document.getElementById("loading").style.display = "none";
 
-	  	var notification = new Notification('Nuevo Usuario Registrado ;)', {
-	      icon: 'https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/tuenti/tuenti_logo.png',
-	      body: "Revisar la tabla para mas detalles ;)",
-	    });
+	  	//var notification = new Notification('Nuevo Usuario Registrado ;)', {
+	      //icon: 'https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/tuenti/tuenti_logo.png',
+	      //body: "Revisar la tabla para mas detalles ;)",
+	    //});
 	 
 	}, function (errorObject) {
 	  alert("Error leyendo data. Intente nuevamente");
