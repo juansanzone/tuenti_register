@@ -1,6 +1,5 @@
 <html>
 <head>
-
 <link rel="shortcut icon" type="image/x-icon" href="https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/favicon_tuenti.ico" />
 <meta name="keywords" content="tuenti, chip, celular, hablar, chatear, internet, app, móvil, equipo" />
 <meta name="language" content="es" />
@@ -18,7 +17,6 @@
 <title>Tuenti ;) - Datos</title>
 
 <style>
-
 html{   
     background-color: #f4f4f4;
     background-repeat: repeat;
@@ -336,90 +334,84 @@ h1 {
   text-align: center;
 }
 
-
-  
-  </style>
-
-  <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+</style>
+<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 
 </head>
 
 <body>
+
 <div style="position:fixed;background-color:#007ac2;height:60px;width:100%;margin-top:-10px;z-index:99;margin-left:-8px;opacity:0.9">
 	<img src="logo.png" width=200vh  style="margin-left: 8px;margin-top: 7px;"/>    
 </div>
 
-<div id="form-main">
-  
-  <div id="form-div">
-   
-   	<div id="loading">
-  		<img src="loader.gif" style="margin-left: 20vh;"/>
-   		<p class="customDescDrop" style="margin-left: 13vh;">CARGANDO DATA </p>
-	</div>
+	<div id="form-main">
+ 
 
-  
-  </div>
+		<select class="feedback-input" onchange="loadData(this);" style="margin-top:60px;">
+		 	<option value="seleccion">SELECCIONE PROVINCIA</option>
+		  	<option value="tucuman">TUCUMAN</option>
+		  	<option value="neuquen">NEUQUEN</option>
+		</select>
 
+		<div id="form-div">
+			<div id="loading" style="display:none;">
+				<img src="loader.gif" style="margin-left: 20vh;"/>
+				<p class="customDescDrop" style="margin-left: 13vh;">CARGANDO DATA </p>
+			</div>
+		</div>
 
-<br/>
-	 <div id="data1" style="display:none;">
-	</div>
+		<div id="dataArea" style="display:none;"></div>
 
-
-	<div id="data2" style="display:none;">
-	</div>
-
-
-
-  </div>
-
-
-
+  	</div>
 
   <script>
+    var firebaseConn;
+    var targetData;
+    var actualDataRegion = "seleccion";
 
-    //Notification.requestPermission();
+    function loadData(element) 
+    {
+    	document.getElementById("loading").style.display = "inline";
+    	document.getElementById("dataArea").innerHTML = '';
+    	actualDataRegion = element.value;
 
-    var firebaseConn = new Firebase("https://tuenti-dev.firebaseio.com");
+    	Firebase.goOffline(); 
+    	firebaseConn = false;
 
-	firebaseConn.on("value", function(snapshot) {
-	  processData(snapshot.val());
-	  document.getElementById("loading").style.display = "none";
+    	if (element.value != 'seleccion') {
+    		firebaseConn = new Firebase("https://tuenti-dev.firebaseio.com/" + actualDataRegion);
+    		Firebase.goOnline(); 
+		   	firebaseConn.on("value", function(snapshot) {
+			  populateData(snapshot.val());
+			  document.getElementById("loading").style.display = "none";
+			}, function (errorObject) {
+				document.getElementById("loading").style.display = "none";
+			  	alert("Error leyendo data remota. Intente nuevamente");
+			});
 
-	  	//var notification = new Notification('Nuevo Usuario Registrado ;)', {
-	      //icon: 'https://d2px9hljt8lyuz.cloudfront.net/ar/static/img/v2/tuenti/tuenti_logo.png',
-	      //body: "Revisar la tabla para mas detalles ;)",
-	    //});
-	 
-	}, function (errorObject) {
-	  alert("Error leyendo data. Intente nuevamente");
-	});
+    	} else {
+    		document.getElementById("loading").style.display = "none";
+    		Firebase.goOffline(); 
+    		firebaseConn = false;
+    	}
+    }
 
-	function processData(dataValue) 
+
+	function populateData(dataValue) 
 	{
-		var tucuman = dataValue.tucuman;
-		var neuquen = dataValue.neuquen;
+		targetData = dataValue;
 
 		var tableHead = "<table style='width:100%' class='heavyTable'><thead><tr><th>Ciudad</th><th>Nombre y Apellido</th><th>Email</th><th>Edad</th><th>Compañía</th><th>Conocía Tuenti?</th><th>Celu Liberado?</th></tr></thead><tbody>";
 		var tableFoot = "</tbody></table>";
 
 		var contentTable = '';
-		Object.keys(tucuman).forEach(function(key) {
-		  contentTable = contentTable + '<tr><td>Tucuman</td><td>' + tucuman[key].nombre_apellido + '</td><td>'+ tucuman[key].email +'</td><td>'+ tucuman[key].edad +'</td><td>'+ tucuman[key].compania +'</td><td>'+ tucuman[key].ya_conocia_tuenti +'</td><td>'+ tucuman[key].celular_liberado +'</td></tr>';
+		Object.keys(targetData).forEach(function(key) {
+		  contentTable = contentTable + '<tr><td>' + actualDataRegion + '</td><td>' + targetData[key].nombre_apellido + '</td><td>'+ targetData[key].email +'</td><td>'+ targetData[key].edad +'</td><td>'+ targetData[key].compania +'</td><td>'+ targetData[key].ya_conocia_tuenti +'</td><td>'+ targetData[key].celular_liberado +'</td></tr>';
 		});
 
-		document.getElementById("data1").innerHTML = tableHead + contentTable + tableFoot;
-
-		var contentTable = '';
-		Object.keys(neuquen).forEach(function(key) {
-		  contentTable = contentTable + '<tr><td>Neuquen</td><td>' + neuquen[key].nombre_apellido + '</td><td>'+ neuquen[key].email +'</td><td>'+ neuquen[key].edad +'</td><td>'+ neuquen[key].compania +'</td><td>'+ neuquen[key].ya_conocia_tuenti +'</td><td>'+ neuquen[key].celular_liberado +'</td></tr>';
-		});
-
-		document.getElementById("data2").innerHTML = tableHead + contentTable + tableFoot;
-
-		document.getElementById("data1").style.display = "inline";
-		document.getElementById("data2").style.display = "inline";
+		document.getElementById("dataArea").innerHTML = tableHead + contentTable + tableFoot;
+		document.getElementById("dataArea").style.display = "inline";
 	}
   </script>
   </body>
