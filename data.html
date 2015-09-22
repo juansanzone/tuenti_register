@@ -222,15 +222,16 @@ table {
   background: white;
 }
 th {
-  background: #3A729B;
-  height: 54px;
-  width: 25%;
-  font-weight: lighter;
-  text-shadow: 0 1px 0 #38678f;
-  color: white;
-  border: 1px solid #38678f;
-  box-shadow: inset 0px 1px 2px #568ebd;
-  transition: all 0.2s;
+    background: #1886C7;
+    height: 54px;
+    width: 25%;
+    font-weight: lighter;
+    text-shadow: 0 1px 0 #1886C7;
+    color: white;
+    border: 1px solid #2378AB;
+    box-shadow: inset 0px 1px 2px #1886C7;
+    transition: all 0.2s;
+    opacity: 0.9;
 }
 tr {
   border-bottom: 1px solid #cccccc;
@@ -334,6 +335,30 @@ h1 {
   text-align: center;
 }
 
+#footerInfo {
+    position: fixed;
+    background-color: #313131;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    margin-left: -8px;
+    opacity: 0.9;
+    bottom: 0px;
+    color: white;
+    font-size: 24px;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-family: monospace;
+}
+
+.realtimebutton {
+	width: 100%;
+    height: 50px;
+    font-size: 20px;
+    background-color: rgba(97, 171, 143, 0.96);
+    color: white;
+}
+
 </style>
 <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 
@@ -341,13 +366,12 @@ h1 {
 
 <body>
 
-<div style="position:fixed;background-color:#007ac2;height:60px;width:100%;margin-top:-10px;z-index:99;margin-left:-8px;opacity:0.9">
+<div style="position:fixed;background-color:#007ac2;height:60px;width:100%;margin-top:-10px;z-index:98;margin-left:-8px;opacity:0.9">
 	<img src="logo.png" width=200vh  style="margin-left: 8px;margin-top: 7px;"/>    
 </div>
 
 	<div id="form-main">
  
-
 		<select class="feedback-input" onchange="loadData(this);" style="margin-top:60px;">
 		 	<option value="seleccion">SELECCIONE PROVINCIA</option>
 		  	<option value="tucuman">TUCUMAN</option>
@@ -365,10 +389,34 @@ h1 {
 
   	</div>
 
+<div id="footerInfo" style="display:none;">
+   
+</div>
+
   <script>
+
     var firebaseConn;
     var targetData;
     var actualDataRegion = "seleccion";
+
+    // Counters
+    var celu_liberado = 0;
+    var conocia_tuenti = 0;
+    var empresa_movi = 0;
+    var empresa_personal = 0;
+    var empresa_nextel = 0;
+    var empresa_claro = 0;
+    var empresa_otro = 0;
+
+    function initCounters() {
+	   	celu_liberado = 0;
+	    conocia_tuenti = 0;
+	    empresa_movi = 0;
+	    empresa_personal = 0;
+	    empresa_nextel = 0;
+	    empresa_claro = 0;
+	    empresa_otro = 0;
+    }
 
     function loadData(element) 
     {
@@ -377,13 +425,17 @@ h1 {
     	actualDataRegion = element.value;
 
     	Firebase.goOffline(); 
+
+    	initCounters();
+
     	firebaseConn = false;
 
     	if (element.value != 'seleccion') {
     		firebaseConn = new Firebase("https://tuenti-dev.firebaseio.com/" + actualDataRegion);
     		Firebase.goOnline(); 
 		   	firebaseConn.on("value", function(snapshot) {
-			  populateData(snapshot.val());
+		   		initCounters();
+			  	populateData(snapshot.val());
 			  document.getElementById("loading").style.display = "none";
 			}, function (errorObject) {
 				document.getElementById("loading").style.display = "none";
@@ -398,18 +450,54 @@ h1 {
     }
 
 
+    function hideStats() {
+    	document.getElementById("footerInfo").style.display = "none";
+    }
+
+    function showStats() {
+		document.getElementById("footerInfo").style.display = "";
+    }
+
+
 	function populateData(dataValue) 
 	{
 		targetData = dataValue;
 
-		var tableHead = "<table style='width:100%' class='heavyTable'><thead><tr><th>Ciudad</th><th>Nombre y Apellido</th><th>Email</th><th>Edad</th><th>Compañía</th><th>Conocía Tuenti?</th><th>Celu Liberado?</th></tr></thead><tbody>";
+		var tableHead = "<button onClick='showStats();' class='realtimebutton'>Stats en tiempo real</button> <table style='width:100%' class='heavyTable'><thead><tr><th>Ciudad</th><th>Nombre y Apellido</th><th>Email</th><th>Edad</th><th>Compañía</th><th>Conocía Tuenti?</th><th>Celu Liberado?</th></tr></thead><tbody>";
 		var tableFoot = "</tbody></table>";
+
+		var tData;
 
 		var contentTable = '';
 		Object.keys(targetData).forEach(function(key) {
 		  contentTable = contentTable + '<tr><td>' + actualDataRegion + '</td><td>' + targetData[key].nombre_apellido + '</td><td>'+ targetData[key].email +'</td><td>'+ targetData[key].edad +'</td><td>'+ targetData[key].compania +'</td><td>'+ targetData[key].ya_conocia_tuenti +'</td><td>'+ targetData[key].celular_liberado +'</td></tr>';
+
+		  	tData = targetData[key];
+
+			if (tData.celular_liberado == 'SI') celu_liberado++;
+	    	if (tData.ya_conocia_tuenti == 'SI') conocia_tuenti++;
+
+	    	if (tData.compania == 'Movistar') {
+	    		empresa_movi++;
+	    	} else if(tData.compania == 'Claro') {
+	    		empresa_claro++;
+	    	} else if (tData.compania == 'Personal') {
+	    		empresa_personal++;
+	    	} else if (tData.compania == 'Nextel') {
+	    		empresa_nextel++;
+	    	} else {
+	    		empresa_otro++;
+	    	}
 		});
 
+    	var canti = Object.keys(targetData).length;
+
+    	console.log(canti);
+    	
+    	var str = '';
+    	str = str + "<p>ConocíaTuenti? <br/> " + ((conocia_tuenti * 100) / canti) + "%  </p> <p> CeluLiberado<br/> " + ((celu_liberado * 100) / canti) + "% </p>  <p> Movi<br/> " + ((empresa_movi * 100) / canti) + "% </p> <p> Claro <br/>" + ((empresa_claro * 100) / canti) + "% </p> <p> Personal<br/> " + ((empresa_personal * 100) / canti) + "% </p> <p> Nextel<br/> " + ((empresa_nextel * 100) / canti) + "% </p> <p> Otro <br/>" + ((empresa_otro * 100) / canti) + "% </p> <br/> <a href='#' onclick='hideStats();' style='color:white'> CERRAR </a>";
+
+    	document.getElementById("footerInfo").innerHTML = str;
 		document.getElementById("dataArea").innerHTML = tableHead + contentTable + tableFoot;
 		document.getElementById("dataArea").style.display = "inline";
 	}
